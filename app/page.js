@@ -6,12 +6,12 @@ export default async function Home() {
   const returned = await sql `SELECT username, password,email FROM login_info;`;
   let stringedReturn = JSON.stringify(returned.rows);
   let dataArray = returned.rows;
-
+   console.log(dataArray);
 
   return (
   <>
-    <br></br>Hello world, I need to work out. I am a page connected to github and vercel. <p>Connecting it all together video 3.</p>
-    <br></br>
+  
+   
     <br></br>
     <table>
     <thead>
