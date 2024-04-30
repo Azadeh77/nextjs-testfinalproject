@@ -1,0 +1,29 @@
+/* styles/Navigation.css */
+
+.navigation {
+  height: 100vh; /* Set the height to 100% of the viewport height */
+    width: 200px; /* Adjust width as needed */
+    background-color: #f0f0f0; /* Background color of the navigation pane */
+  }
+  
+  .navigation ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* Remove default margin to prevent spacing */
+    height: 100%; /* Set the height of the navigation ul to 100% of its parent (.navigation) */
+  }
+  
+  .navigation li {
+    padding: 10px;
+  }
+  
+  .navigation a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .navigation a:hover {
+    color: #000;
+    font-weight: bold;
+  }
+  
