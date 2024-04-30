@@ -27,3 +27,12 @@
     font-weight: bold;
   }
   
+  /* Style for the parent container */
+.parent-container {
+  display: flex; /* Use flexbox */
+}
+
+/* Style for the content on the right side */
+.right-content {
+  flex: 1; /* Take up remaining space */
+}

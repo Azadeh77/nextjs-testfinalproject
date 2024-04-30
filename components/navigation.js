@@ -6,6 +6,7 @@ import './navigation.css'; // Import CSS file for styling
 const Navigation = () => {
   
   return (
+    
     <div className="navigation">
       <ul>
         <li><a href="/">Home</a></li>

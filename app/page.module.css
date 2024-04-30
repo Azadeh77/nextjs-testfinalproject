@@ -1,0 +1,11 @@
+.tablecellSpacing {
+    padding: 5px 10px;
+  }
+
+  .tablerowSpacing {
+    margin-bottom: 10px;
+  }
+
+  .inProgressBackgroundColor {
+    background-color: lightgreen;
+  }
