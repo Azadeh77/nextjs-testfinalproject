@@ -10,7 +10,7 @@ export default async function Home() {
   const returned = await sql `SELECT username, password,email FROM login_info;`;
   let stringedReturn = JSON.stringify(returned.rows);
   let dataArray = returned.rows;
-   console.log(dataArray);
+   
 
   return (
   <>
@@ -20,3 +20,4 @@ export default async function Home() {
     </>
   );
 }
+export const dynamic = 'force-dynamic';
