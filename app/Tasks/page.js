@@ -8,7 +8,7 @@ import Link from 'next/link';
 // Define your page component
 const YourPage = async () => {
   console.log("YourPage.called");
-    const returned = await sql `SELECT title, status FROM tasks where user_id=2;`;
+    const returned = await sql `SELECT title, status FROM tasks where user_id=${"2"};`;
     let stringedReturn = JSON.stringify(returned.rows);
     let dataArray = returned.rows;
     console.log(returned.rows);
