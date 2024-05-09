@@ -7,9 +7,9 @@ import { sql } from '@vercel/postgres';
 
 export default async function Home() {
 
-  const returned = await sql `SELECT username, password,email FROM login_info;`;
-  let stringedReturn = JSON.stringify(returned.rows);
-  let dataArray = returned.rows;
+ // const returned = await sql `SELECT username, password,email FROM login_info;`;
+ // let stringedReturn = JSON.stringify(returned.rows);
+ // let dataArray = returned.rows;
    
 
   return (
@@ -20,4 +20,4 @@ export default async function Home() {
     </>
   );
 }
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
