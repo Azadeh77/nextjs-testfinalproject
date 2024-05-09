@@ -21,7 +21,7 @@ const YourPage = async () => {
          {
           <>
             <Link href="/Tasks/NewTask">
-            <button className="myButton">New Task</button>
+            <button className={`${styles.myButton}`}>New Task</button>
           </Link>
           <br></br>
           <br></br>
@@ -38,12 +38,16 @@ const YourPage = async () => {
       <tbody>
         {dataArray.map((item) => (
            <tr key={item.id} className={`${styles.tablerowSpacing} ${item.status === 'InProgress' ? styles.inProgressBackgroundColor : ''} ${new Date(item.due_date) < new Date() ? styles.pastDueDate : ''}`}>
-            {Object.values(item).map((value, index) => {
+            {Object.entries(item).map(([key, value], index) => {
       // Check if value is a date
       if (value instanceof Date) {
         // Format the date to a readable string
         value = value.toLocaleDateString();
       }
+      // Check if key is 'priority' and change the value accordingly
+  if (key === 'priority') {
+    value = value === 0 ? 'Low' : value === 1 ? 'Medium' : 'High';
+  }
       return <td key={index} className={styles.tablecellSpacing}>{value}</td>
     })}
           </tr>
