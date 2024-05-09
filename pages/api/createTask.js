@@ -4,10 +4,12 @@ import { sql } from '@vercel/postgres';
 export default async function handler(req, res) {
     console.log("createTask.called");
   if (req.method === 'POST') {
-    const { title, status } = req.body;
+    const { title, description, category, priority, dueDate, status } = req.body;
 console.log("title",title);
+// Convert priority to number
+const priorityNumber = priority === 'high' ? 2 : priority === 'medium' ? 1 : 0;
     try {
-      await sql`INSERT INTO tasks (title, status, user_id) VALUES (${title}, ${status},2)`;
+      await sql`INSERT INTO tasks (title, description, category, priority, due_date, status, user_id) VALUES (${title}, ${description}, ${category}, ${priorityNumber}, ${dueDate}, ${status}, 2)`;
 
       res.status(200).json({ message: 'Task created successfully' });
     } catch (err) {
