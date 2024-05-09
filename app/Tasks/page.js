@@ -7,8 +7,8 @@ import Link from 'next/link';
 
 // Define your page component
 const YourPage = async () => {
-  console.log("YourPage.called");
-    const returned = await sql `SELECT title, status FROM tasks where user_id=${"2"};`;
+ 
+    const returned = await sql `SELECT title, description, category,	priority,	due_date,	status,	created_at FROM tasks where user_id=${"2"};`;
     let stringedReturn = JSON.stringify(returned.rows);
     let dataArray = returned.rows;
     console.log(returned.rows);
@@ -37,10 +37,15 @@ const YourPage = async () => {
       </thead>
       <tbody>
         {dataArray.map((item) => (
-          <tr key={item.id} className={`${styles.tablerowSpacing} ${item.status === 'InProgress' ? styles.inProgressBackgroundColor : ''}`}>
-            {Object.values(item).map((value, index) => (
-              <td key={index} className={styles.tablecellSpacing}>{value}</td>
-            ))}
+           <tr key={item.id} className={`${styles.tablerowSpacing} ${item.status === 'InProgress' ? styles.inProgressBackgroundColor : ''} ${new Date(item.due_date) < new Date() ? styles.pastDueDate : ''}`}>
+            {Object.values(item).map((value, index) => {
+      // Check if value is a date
+      if (value instanceof Date) {
+        // Format the date to a readable string
+        value = value.toLocaleDateString();
+      }
+      return <td key={index} className={styles.tablecellSpacing}>{value}</td>
+    })}
           </tr>
         ))}
       </tbody>

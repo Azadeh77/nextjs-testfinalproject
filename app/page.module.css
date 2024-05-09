@@ -26,3 +26,7 @@
   .mylabel {
     margin-right: 10px;
   }
+
+  .pastDueDate {
+    background-color: red;
+  }
