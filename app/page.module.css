@@ -81,3 +81,9 @@
 .label-text {
   margin-bottom: 10px;
 }
+
+.checkboxColumn {
+  text-align: center;
+  vertical-align: middle;
+  width: 50px; /* Add this line */
+}
