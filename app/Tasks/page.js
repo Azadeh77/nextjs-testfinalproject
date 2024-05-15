@@ -7,7 +7,7 @@ import styles from "../page.module.css";
 import Navigation from '../../components/navigation';
 import { sql } from '@vercel/postgres';
 import Link from 'next/link';
-import { useState } from 'react';
+
 
 
 
@@ -22,7 +22,7 @@ import { useState } from 'react';
 // Define your page component
 const YourPage = async () => {
 
-  const [selectedTasks, setSelectedTasks] = useState([]);
+ 
 
 
  
