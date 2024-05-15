@@ -46,7 +46,7 @@ const YourPage = async () => {
           </Link>
 
 
-          <button className={`${styles.myButton}`} onClick={() => alert(`Task IDs: ${selectedTasks.join(', ')}`)}>Delete Task</button>
+          <button className={`${styles.myButton}`} >Delete Task</button>
           <br></br>
           <br></br>
           <p>Current Tasks</p>
@@ -70,13 +70,7 @@ const YourPage = async () => {
         {dataArray.map((item) => (
            <tr key={item.id} className={`${styles.tablerowSpacing} ${item.status === 'InProgress' ? styles.inProgressBackgroundColor : ''} ${new Date(item.due_date) < new Date() ? styles.pastDueDate : ''}`}>
             <td className={styles.checkboxColumn}><input type="checkbox" 
-             onChange={(e) => {
-              if (e.target.checked) {
-                setSelectedTasks([...selectedTasks, item.task_id]);
-              } else {
-                setSelectedTasks(selectedTasks.filter(id => id !== item.task_id));
-              }
-            }}
+             
             
             />
 </td>
