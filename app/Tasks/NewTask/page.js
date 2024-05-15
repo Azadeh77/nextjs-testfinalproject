@@ -57,7 +57,7 @@ const YourPage = () => {
             Description: 
             <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
           </label>
-          <label className={styles.form-label}>
+          <label className="form-label">
             Category: 
             <select value={category} onChange={(e) => setCategory(e.target.value)}>
               <option value="">Select...</option>

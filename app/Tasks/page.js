@@ -1,4 +1,7 @@
 
+
+
+"use client";
 import Image from "next/image";
 import styles from "../page.module.css";
 import Navigation from '../../components/navigation';
@@ -10,17 +13,27 @@ import Link from 'next/link';
 
 
 
+
+
+
+
+
 // Define your page component
 const YourPage = async () => {
-  
+
+
+
+
+ 
  //my previous code for retrieving
-    const returned = await sql `SELECT task_id, title, description, category,	priority,	due_date,	status,	created_at FROM tasks where user_id=${"2"};`;
+    const returned = await sql `SELECT task_id, title, description, category, priority, due_date, status, created_at FROM tasks where user_id=${"2"};`;
     let stringedReturn = JSON.stringify(returned.rows);
     let dataArray = returned.rows;
     console.log(returned.rows);
 
-    
-  
+
+   
+ 
     return (
       <div className="parent-container">
         <Navigation />
@@ -30,6 +43,7 @@ const YourPage = async () => {
             <Link href="/Tasks/NewTask">
             <button className={`${styles.myButton}`}>New Task</button>
           </Link>
+
 
           <button className={`${styles.myButton}`}>Delete Task</button>
           <br></br>
@@ -54,7 +68,7 @@ const YourPage = async () => {
       <tbody>
         {dataArray.map((item) => (
            <tr key={item.id} className={`${styles.tablerowSpacing} ${item.status === 'InProgress' ? styles.inProgressBackgroundColor : ''} ${new Date(item.due_date) < new Date() ? styles.pastDueDate : ''}`}>
-            <td className={styles.checkboxColumn}><input type="checkbox"  />
+            <td className={styles.checkboxColumn}><input type="checkbox"  onChange={() => alert(item.task_id)} />
 </td>
             {Object.entries(item).map(([key, value], index) => {
               // Skip the task_id
@@ -85,8 +99,9 @@ const YourPage = async () => {
     );
   }
   export const dynamic = 'force-dynamic';
-  
+ 
   // Export your page component
   export default YourPage;
-  
-  
+ 
+ 
+
