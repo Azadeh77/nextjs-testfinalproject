@@ -1,13 +1,13 @@
 
 
 
-"use client";
+
 import Image from "next/image";
 import styles from "../page.module.css";
 import Navigation from '../../components/navigation';
 import { sql } from '@vercel/postgres';
 import Link from 'next/link';
-
+import { useState } from 'react';
 
 
 
@@ -21,7 +21,7 @@ import Link from 'next/link';
 // Define your page component
 const YourPage = async () => {
 
-
+  const [selectedTasks, setSelectedTasks] = useState([]);
 
 
  
@@ -45,7 +45,7 @@ const YourPage = async () => {
           </Link>
 
 
-          <button className={`${styles.myButton}`}>Delete Task</button>
+          <button className={`${styles.myButton}`} onClick={() => alert(`Task IDs: ${selectedTasks.join(', ')}`)}>Delete Task</button>
           <br></br>
           <br></br>
           <p>Current Tasks</p>
@@ -68,7 +68,16 @@ const YourPage = async () => {
       <tbody>
         {dataArray.map((item) => (
            <tr key={item.id} className={`${styles.tablerowSpacing} ${item.status === 'InProgress' ? styles.inProgressBackgroundColor : ''} ${new Date(item.due_date) < new Date() ? styles.pastDueDate : ''}`}>
-            <td className={styles.checkboxColumn}><input type="checkbox"  onChange={() => alert(item.task_id)} />
+            <td className={styles.checkboxColumn}><input type="checkbox" 
+             onChange={(e) => {
+              if (e.target.checked) {
+                setSelectedTasks([...selectedTasks, item.task_id]);
+              } else {
+                setSelectedTasks(selectedTasks.filter(id => id !== item.task_id));
+              }
+            }}
+            
+            />
 </td>
             {Object.entries(item).map(([key, value], index) => {
               // Skip the task_id
