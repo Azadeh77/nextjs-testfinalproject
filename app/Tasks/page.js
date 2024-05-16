@@ -11,6 +11,7 @@ const YourPage = async () => {
   
  //my previous code for retrieving
     const returned = await sql `SELECT task_id, title, description, category, priority, due_date, status, created_at FROM tasks where user_id=${"2"};`;
+    
     let stringedReturn = JSON.stringify(returned.rows);
     let dataArray = returned.rows;
     console.log(returned.rows);
