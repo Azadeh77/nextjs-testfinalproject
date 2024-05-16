@@ -54,7 +54,7 @@ const YourPage = async () => {
            <tr key={item.id} className={`${styles.tablerowSpacing} ${item.status === 'InProgress' ? styles.inProgressBackgroundColor : ''} ${new Date(item.due_date) < new Date() ? styles.pastDueDate : ''}`}>
             <td className={styles.checkboxColumn}><input type="checkbox" 
              
-            
+             name={`task-${item.task_id}`}
             />
 </td>
             {Object.entries(item).map(([key, value], index) => {
