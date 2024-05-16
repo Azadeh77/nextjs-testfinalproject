@@ -1,31 +1,14 @@
 
-
-
-
 import Image from "next/image";
 import styles from "../page.module.css";
 import Navigation from '../../components/navigation';
 import { sql } from '@vercel/postgres';
 import Link from 'next/link';
 
-
-
-
-
-
-
-
-
-
-
-
 // Define your page component
 const YourPage = async () => {
 
- 
-
-
- 
+  
  //my previous code for retrieving
     const returned = await sql `SELECT task_id, title, description, category, priority, due_date, status, created_at FROM tasks where user_id=${"2"};`;
     let stringedReturn = JSON.stringify(returned.rows);
