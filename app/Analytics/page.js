@@ -18,7 +18,7 @@ export default function Home() {
     fetch('/api/retrieveTasks')
       .then(response => response.json())
       .then(data => {
-   
+   console.log("data",data);
         const chartData = {
           labels: data.map(row => row.status),
           datasets: [{
@@ -47,15 +47,76 @@ export default function Home() {
   }, []);
 
   if (!chartData) {
-    return 'Loading...';
+    return (
+      <>
+        <div className="parent-container">
+          <Navigation />
+          <div className="right-content">
+            Loading...
+          </div>
+        </div>
+      </>
+    );
   }
+
+// Configure options for the pie chart
+const options = {
+  plugins: {
+    legend: {
+      display: true,
+      position: 'right', // Display legend on the right side
+      labels: {
+        boxWidth: 20, // Adjust the width of the legend items if needed
+        padding: 20, // Add padding between legend items if needed
+      },
+    },
+    tooltip: {
+      callbacks: {
+        label: function(context) {
+          // Display label based on the status
+          return `${context.label}: ${context.parsed}%`;
+        }
+      }
+    }
+  }
+};
+
+// Calculate total count
+const totalCount = chartData.datasets[0].data.reduce((a, b) => a + b, 0);
 
   return (
     <>
       <div className="parent-container">
         <Navigation />
         <div className="right-content">
-          <Pie data={chartData} />
+          <p>Current Tasks</p>
+          <br></br>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{width: '200px', height: '200px'}}>
+          <Pie data={chartData} options={{ plugins: { legend: { display: false } } }} />
+        </div>
+        <table style={{ marginLeft: '20px' }}>
+        <tbody>
+              {chartData.labels.map((label, index) => {
+                // Calculate percentage for this label
+                const percentage = (chartData.datasets[0].data[index] / totalCount * 100).toFixed(2);
+                return (
+                  <tr key={index}>
+                    <td>
+                      <div style={{
+                        display: 'inline-block',
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: chartData.datasets[0].backgroundColor[index]
+                      }}></div>
+                    </td>
+                    <td>{label} : {percentage}%</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          </div>
         </div>
       </div>
     </>
